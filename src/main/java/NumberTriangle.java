@@ -1,4 +1,6 @@
 import java.io.*;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * This is the provided NumberTriangle class to be used in this coding task.
@@ -124,7 +126,8 @@ public class NumberTriangle {
         BufferedReader br = new BufferedReader(new InputStreamReader(inputStream));
 
 
-        // TODO define any variables that you want to use to store things
+        // DONE define any variables that you want to use to store things
+        List<List<NumberTriangle>> triangles = new ArrayList<>();
 
         // will need to return the top of the NumberTriangle,
         // so might want a variable for that.
@@ -132,16 +135,19 @@ public class NumberTriangle {
 
         String line = br.readLine();
         while (line != null) {
-
-            // remove when done; this line is included so running starter code prints the contents of the file
-            System.out.println(line);
-
-            // TODO process the line
+            // DONE process the line
+            String[] processed = line.split(" ");
+            List<NumberTriangle> triangle = new ArrayList<>();
+            for  (int i = 0; i < processed.length; i++) {
+                triangle.add(new NumberTriangle(Integer.parseInt(processed[i])));
+            }
+            triangles.add(triangle);
 
             //read the next line
             line = br.readLine();
         }
         br.close();
+        top = triangles.get(0).get(0);
         return top;
     }
 
@@ -154,5 +160,5 @@ public class NumberTriangle {
         // Problem 18 from project Euler [not for credit]
         mt.maxSumPath();
         System.out.println(mt.getRoot());
+        }
     }
-}
